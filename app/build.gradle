@@ -15,12 +15,26 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    androidExtensions {
+        experimental = true
     }
 }
 
@@ -30,9 +44,26 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'android.arch.persistence.room:runtime:2.2.1'
-    kapt "android.arch.persistence.room:compiler:2.2.1"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.expresso"
+    api "androidx.room:room-runtime:$rootProject.roomVersion"
+    api "androidx.room:room-compiler:$rootProject.roomVersion"
+    api "androidx.room:room-ktx:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    api "androidx.room:room-rxjava2:$rootProject.roomVersion"
+
+    api "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.androidxArchVersion"
+
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
+    api "io.reactivex.rxjava2:rxkotlin:$rootProject.rxKotlin"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
+
+    api "org.koin:koin-android-viewmodel:$rootProject.koin"
+    api "org.koin:koin-android-scope:$rootProject.koin"
 }

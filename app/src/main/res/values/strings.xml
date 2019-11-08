@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mude Ja</string>
+
+    <string name="title_progress_bar_loading">Carregando</string>
 </resources>
